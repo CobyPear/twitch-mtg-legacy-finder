@@ -28,9 +28,9 @@ h2 {
   justify-items: center;
 }
 
-.message> button{
-  width: 30px;
-  height: 30px;
+button{
+  width: 120px;
+  height: 35px;
   padding: 5px;
   margin-left: 3rem;
   background-color: #9147ff;

@@ -13,9 +13,10 @@ function App() {
 
   const URL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${redirectURI}&response_type=${responseType}&scope=${scopes}&claims=${claims}&force_verify=true`
 
-  let [legacyStreams, setLegacyStreams] = useState([])
-  let [currentPage, setCurrentPage] = useState()
+  const [legacyStreams, setLegacyStreams] = useState([])
+  const [currentPage, setCurrentPage] = useState()
   const [closed, setClosed] = useState(JSON.parse(localStorage.getItem('closed')) || false);
+  const [filter, setFilter] = useState('legacy')
 
   useEffect(() => {
     if (token) {
@@ -26,7 +27,7 @@ function App() {
 
       })()
     }
-  }, [token])
+  }, [token, filter])
 
 
   useEffect(() => {
@@ -38,8 +39,9 @@ function App() {
   })
 
 
+  // pick out streams based on filter. default legacy
   const cherryPickStreams = streams => {
-    let filtered = streams?.filter(stream => stream.title.toLowerCase().includes('legacy'))
+    let filtered = streams?.filter(stream => stream.title.toLowerCase().includes(filter))
     // console.log(...filtered)
     let newStreams = [...new Set(filtered)]
     // console.log(newStreams)
@@ -50,28 +52,31 @@ function App() {
   }
 
 
+  // call the API again, ask for the next page
   const nextPage = async () => {
-    // console.log('hello')
-    // console.log(token)
     if (currentPage) {
       const { data, pagination } = await API.getNextPage(token, currentPage)
       setCurrentPage(pagination.cursor ? pagination.cursor : '')
       cherryPickStreams(data)
-      // console.log(currentPage)
-      // console.log('debug', legacyStreams)
     }
   }
 
   const hideMessage = () => {
-    // console.log('before', closed)
     setClosed(!closed)
-    // console.log('after', closed)
     localStorage.setItem('closed', !closed)
   }
 
 
   return (
     <div className='main-container'>
+      <button
+      onClick={() => {
+        const cards = document.getElementById('cards')
+        cards.innerHTML =''
+        setFilter(filter === 'legacy' ? 'modern' : 'legacy')
+      }}>
+        switch to {`${filter === 'legacy' ? 'modern' : 'legacy'}`}
+      </button>
       {
         !closed ? (
         <div className="message" style={{ display: closed ? 'none' : 'flex' }}>

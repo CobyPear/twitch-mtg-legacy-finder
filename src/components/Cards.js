@@ -3,7 +3,7 @@ import StreamerCard from './StreamerCard'
 
 const Cards = ({legacyStreams}) => {
     return (
-        <>
+        <div id='cards'>
             {   legacyStreams?.length &&
                 legacyStreams?.map(stream => {
                     return <StreamerCard
@@ -15,7 +15,7 @@ const Cards = ({legacyStreams}) => {
 
                 })
             }
-        </>
+        </div>
     )
 }
 
