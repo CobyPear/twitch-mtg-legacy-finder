@@ -9,77 +9,65 @@ function App() {
   const scopes = 'openid'
   // console.log(process.env.REACT_APP_CLIENT_ID)
   const claims = ''
+  const token = window.location.href.split('=')[1]?.split('&')[0] || ''
 
   const URL = `https://id.twitch.tv/oauth2/authorize?client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${redirectURI}&response_type=${responseType}&scope=${scopes}&claims=${claims}&force_verify=true`
 
   let [legacyStreams, setLegacyStreams] = useState([])
   let [currentPage, setCurrentPage] = useState()
+  console.log(legacyStreams)
+
+  useEffect(()=> {
+    if (token) {
+      (async () =>{
+        const { data, pagination} = await API.getStreams(token)
+        setCurrentPage(pagination.cursor)
+        cherryPickStreams(data)
+        
+      })()
+    }
+  }, [token])
+
+
+  useEffect(() => {
+    window.onscroll = function() {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        nextPage()
+      }
+    }
+  })
+
 
   const cherryPickStreams = streams => {
     let filtered = streams?.filter(stream => stream.title.toLowerCase().includes('legacy'))
     // console.log(...filtered)
-
+    let newStreams = [...new Set(filtered)]
+    console.log(newStreams)
     setLegacyStreams(prevState => {
-      return [...prevState, ...filtered]
+      return prevState ? [...prevState, ...newStreams] : [...newStreams]
     })
-  }
-
-  const buttonClick = async () => {
-    const token = window.location.href.split('=')[1].split('&')[0]
-    // console.log(token)
-
-
-      const { data, pagination} = await API.getStreams(token)
-      // console.log(resp)
-      setCurrentPage(pagination.cursor)
-      // console.log(currentPage)
-
-      cherryPickStreams(data)
-
-      console.log(legacyStreams)
 
   }
+
 
   const nextPage = async () => {
-    const token = window.location.href.split('=')[1].split('&')[0]
+    console.log('hello')
     // console.log(token)
-    try {
-      const req = await fetch(`https://api.twitch.tv/helix/streams?game_id=2748&after=${currentPage}`, {
-        method: 'GET',
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "client-id": process.env.REACT_APP_CLIENT_ID,
-        }
-      })
-
-      const resp = await req.json()
-      // console.log(resp)
-
-      cherryPickStreams(resp.data)
-
-
-      console.log(legacyStreams)
-
-    } catch (error) {
-      console.log(error)
+    if (currentPage) {
+      const { data, pagination } = await API.getNextPage(token,currentPage)
+      setCurrentPage(pagination.cursor ? pagination.cursor : '')
+      cherryPickStreams(data)
+      console.log(currentPage)
+      console.log('debug', legacyStreams)
     }
   }
 
+
   return (
-    <>
+    <div className='main-container'>
       <a href={URL}>Login</a>
-      <button
-        onClick={buttonClick}>
-        Search Twitch
-     </button>
-      <button
-        onClick={nextPage}>
-        next
-     </button>
-     {
-        <Cards legacyStreams={legacyStreams} />
-     }
-    </>
+     { legacyStreams && <Cards legacyStreams={legacyStreams} />}
+    </div>
   );
 }
 

@@ -13,6 +13,46 @@ code {
 }
 
 html {
-  width: 100vw;
+  width: 95vw;
   height: 100vh;
+}
+
+h2 {
+  word-wrap: break-word;
+}
+.main-container {
+  display: flex;
+  /* width: inherit; */
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+.card-header {
+  flex-direction: row wrap;
+}
+
+.img-link-container {
+  display: flex;
+  width: auto;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.img-link-container a {
+  display: flex;
+  margin: 0 auto;
+  padding-top: 5px;
+  font-size: 1.7em;
 }
