@@ -78,7 +78,7 @@ function App() {
           <h1>Welcome to Twitch M:tG Legacy Finder</h1>
           <button onClick={hideMessage}>x</button>
           <p>How does it work?</p>
-          <p>1. Click Login to login to your Twitch account <a href="https://github.com/CobyPear/twitch-mtg-legacy-finder#why+do+i+need+to+log+in+to+twitch" id='why'>Why do I need to do this?</a></p>
+          <p>1. Click Login to login to your Twitch account <a href="https://github.com/CobyPear/twitch-mtg-legacy-finder#why-do-i-need-to-login-to-twitch" id='why'>Why do I need to do this?</a></p>
           <p>2. Browse live Magic: the Gathering streamers currently playing the best (Legacy) format</p>
           <p>3. ???</p>
           <p>4. Profit!</p>
