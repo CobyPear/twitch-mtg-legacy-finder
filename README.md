@@ -10,6 +10,6 @@ This website shows only the live M:tG streams with `legacy` in the title.
 
 ## :question: Why do I need to login to Twitch?
 
-Since this is a client side application, Twitch's API requires an access token in order to access certain endpoints. I wanted to avoid writing a server for this little project, so you'll need to login. Sorry for any inconvienence.
+Since this is a client side application, Twitch's API requires an access token in order to access certain endpoints. I wanted to avoid writing a server for this little project, so you'll need to login. Sorry for any inconvenience.
 
 Note: I am not storing ANY of your data. There is no database attached to this website. It's possible

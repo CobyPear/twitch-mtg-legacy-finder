@@ -7,7 +7,6 @@ const Cards = ({legacyStreams}) => {
         <>
             {   legacyStreams?.length &&
                 legacyStreams?.map(stream => {
-                    console.log(stream)
                     return <StreamerCard
                         key={stream.id}
                         title={stream.title}
