@@ -2,7 +2,6 @@ import React from 'react'
 import StreamerCard from './StreamerCard'
 
 const Cards = ({legacyStreams}) => {
-    console.log(legacyStreams)
     return (
         <>
             {   legacyStreams?.length &&

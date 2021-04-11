@@ -1,7 +1,6 @@
 import React from 'react'
 
 const StreamerCard = ({ title, streamer, thumbnail }) => {
-    console.log(thumbnail.toString().replace('{width}', '250').replace('{height}', '250'))
     let thumb = thumbnail.toString().replace('{width}', '500').replace('{height}', '250')
     return (
         <div className='card'>
