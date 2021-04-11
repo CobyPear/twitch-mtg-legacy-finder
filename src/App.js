@@ -20,11 +20,19 @@ function App() {
 
   useEffect(() => {
     if (token) {
+      const cherryPickStreams = streams => {
+        let filtered = streams?.filter(stream => stream.title.toLowerCase().includes(filter))
+        // console.log(...filtered)
+        let newStreams = [...new Set(filtered)]
+        // console.log(newStreams)
+        setLegacyStreams(prevState => {
+          return prevState ? [...prevState, ...newStreams] : [...newStreams]
+        })
+      }
       (async () => {
         const { data, pagination } = await API.getStreams(token)
         setCurrentPage(pagination.cursor)
         cherryPickStreams(data)
-
       })()
     }
   }, [token, filter])
@@ -48,7 +56,6 @@ function App() {
     setLegacyStreams(prevState => {
       return prevState ? [...prevState, ...newStreams] : [...newStreams]
     })
-
   }
 
 
@@ -96,7 +103,7 @@ function App() {
       }
       { legacyStreams && <Cards legacyStreams={legacyStreams} />}
 
-      <footer>
+      <footer id='footer'>
         <span>&copy; <a href="https://cobysher.dev">Coby Sher</a> 2021</span>
       </footer>
     </div>

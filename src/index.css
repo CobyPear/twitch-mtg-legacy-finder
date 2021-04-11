@@ -139,7 +139,15 @@ button{
 .tooltip:hover:before img:hover:before {
   display:block;
 } */
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 30px;
+  padding: 5px 0;
+  margin-top: 1rem;
+}
 
-footer > span {
-  text-align: center;
+#footer > span {
+
 }

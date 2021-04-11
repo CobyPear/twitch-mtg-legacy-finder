@@ -4,7 +4,7 @@ import StreamerCard from './StreamerCard'
 const Cards = ({legacyStreams}) => {
     return (
         <div id='cards'>
-            {   legacyStreams?.length &&
+            {   legacyStreams?.length ?(
                 legacyStreams?.map(stream => {
                     return <StreamerCard
                         key={stream.id}
@@ -14,6 +14,9 @@ const Cards = ({legacyStreams}) => {
                     />
 
                 })
+                ) : (
+                    <p style={{textAlign: 'center'}}>Login to view active streams</p>
+                )
             }
         </div>
     )
