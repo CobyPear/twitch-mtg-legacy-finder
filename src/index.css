@@ -1,15 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, ;
+  -webkit-font-smoothing: antialiased; */
   -moz-osx-font-smoothing: grayscale;
-}
+  background-color: black;
+  color: white;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 html {
@@ -20,39 +19,127 @@ html {
 h2 {
   word-wrap: break-word;
 }
+
+.message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 3rem;
+  text-align: center;
+  justify-items: center;
+}
+
+.message> button{
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  margin-left: 3rem;
+  background-color: #9147ff;
+  color: white;
+}
+
+.message > a {
+  margin: 0 auto;
+  width: 40px
+}
+
+#why {
+  background-color: white;
+}
+
+#show-message {
+  margin: 3rem auto;
+  background-color: #9147ff;
+  color: white;
+  padding: 8px;
+}
+/* style links to look like buttons */
+.link-button {
+  text-decoration: none;
+  background-color: #9147ff;
+  padding: 4px 8px;
+  color: white;
+  font-style: italic;
+  border-radius: 25px;
+}
+.link-button:hover {
+  background-color: #aa7af1;
+  box-shadow: 0 5px 15px #9147ff;
+  border-radius: 0;
+}
+
+/* container where cards live */
 .main-container {
   display: flex;
-  /* width: inherit; */
   flex-direction: column;
   justify-content: center;
 }
+
+
+/* cards */
 
 .card {
   width: 500px;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  padding-bottom: 1rem;
+  margin: 0 auto 2rem auto;
+  padding: 1rem;
+
+  background-color: black;
+
+  border: solid 1px white;
+  border-radius: 25px;
 }
+
 .card-body {
   display: flex;
   flex-direction: column;
 }
-.card-header {
-  flex-direction: row wrap;
+
+/* spacer element */
+.spacer {
+  flex-grow: 1;
+  height: 20px;
 }
 
 .img-link-container {
   display: flex;
-  width: auto;
-  justify-content: center;
   flex-direction: column;
+  /* justify-content: space-between; */
+  margin-bottom: 10px;
 }
 
-
-.img-link-container a {
+.img-link-container > a {
   display: flex;
-  margin: 0 auto;
-  padding-top: 5px;
+  margin: 5px auto;
   font-size: 1.7em;
+}
+
+/* TODO: try to get tooltip on image working :] */
+
+/* img tooltip */
+/* .tooltip {
+  position: relative;
+  border-bottom: 1px dashed #000;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  left: 100%;
+  margin-left: 15px;
+
+  width:200px;
+  padding:10px;
+  border-radius:10px;
+  background:#fff;
+
+  display: none;
+
+}
+
+.tooltip:hover:before img:hover:before {
+  display:block;
+} */
+
+footer > span {
+  text-align: center;
 }

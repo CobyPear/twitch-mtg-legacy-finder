@@ -11,10 +11,13 @@ const StreamerCard = ({ title, streamer, thumbnail }) => {
             <div className="card-body">
                 <h2>{title}</h2>
                 <div className="img-link-container">
-                    <a href={`https://twitch.tv/${streamer}`}>
+                    <a target='_blank' rel='noreferrer' href={`https://twitch.tv/${streamer}`}>
                         <img src={thumb} alt={`${streamer}'s stream thumbnail`} />
+                        <span className="tooltip" data-text={`click to open ${streamer}'s stream`}>
+                        </span>
                     </a>
-                    <a href={`https://twitch.tv/${streamer}`}>
+                    <div className="spacer"></div>
+                    <a className='link-button' rel='noreferrer' target='_blank' href={`https://twitch.tv/${streamer}`}>
                         Go to {streamer}'s stream!
                     </a>
                 </div>
