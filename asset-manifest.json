@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/twitch-mtg-legacy-finder/static/css/main.04082bd2.chunk.css",
-    "main.js": "/twitch-mtg-legacy-finder/static/js/main.eaa88089.chunk.js",
-    "main.js.map": "/twitch-mtg-legacy-finder/static/js/main.eaa88089.chunk.js.map",
+    "main.css": "/twitch-mtg-legacy-finder/static/css/main.fae2e703.chunk.css",
+    "main.js": "/twitch-mtg-legacy-finder/static/js/main.c3a3ffa1.chunk.js",
+    "main.js.map": "/twitch-mtg-legacy-finder/static/js/main.c3a3ffa1.chunk.js.map",
     "runtime-main.js": "/twitch-mtg-legacy-finder/static/js/runtime-main.bd893773.js",
     "runtime-main.js.map": "/twitch-mtg-legacy-finder/static/js/runtime-main.bd893773.js.map",
-    "static/js/2.a0b4b9e9.chunk.js": "/twitch-mtg-legacy-finder/static/js/2.a0b4b9e9.chunk.js",
-    "static/js/2.a0b4b9e9.chunk.js.map": "/twitch-mtg-legacy-finder/static/js/2.a0b4b9e9.chunk.js.map",
+    "static/js/2.cbd18c20.chunk.js": "/twitch-mtg-legacy-finder/static/js/2.cbd18c20.chunk.js",
+    "static/js/2.cbd18c20.chunk.js.map": "/twitch-mtg-legacy-finder/static/js/2.cbd18c20.chunk.js.map",
     "static/js/3.5fe54b5a.chunk.js": "/twitch-mtg-legacy-finder/static/js/3.5fe54b5a.chunk.js",
     "static/js/3.5fe54b5a.chunk.js.map": "/twitch-mtg-legacy-finder/static/js/3.5fe54b5a.chunk.js.map",
     "index.html": "/twitch-mtg-legacy-finder/index.html",
-    "static/css/main.04082bd2.chunk.css.map": "/twitch-mtg-legacy-finder/static/css/main.04082bd2.chunk.css.map",
-    "static/js/2.a0b4b9e9.chunk.js.LICENSE.txt": "/twitch-mtg-legacy-finder/static/js/2.a0b4b9e9.chunk.js.LICENSE.txt"
+    "static/css/main.fae2e703.chunk.css.map": "/twitch-mtg-legacy-finder/static/css/main.fae2e703.chunk.css.map",
+    "static/js/2.cbd18c20.chunk.js.LICENSE.txt": "/twitch-mtg-legacy-finder/static/js/2.cbd18c20.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.bd893773.js",
-    "static/js/2.a0b4b9e9.chunk.js",
-    "static/css/main.04082bd2.chunk.css",
-    "static/js/main.eaa88089.chunk.js"
+    "static/js/2.cbd18c20.chunk.js",
+    "static/css/main.fae2e703.chunk.css",
+    "static/js/main.c3a3ffa1.chunk.js"
   ]
 }
