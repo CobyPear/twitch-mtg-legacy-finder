@@ -16,10 +16,13 @@ function App() {
   const [currentPage, setCurrentPage] = useState()
   const [closed, setClosed] = useState(JSON.parse(localStorage.getItem('closed')) || false);
   const [filter, setFilter] = useState(JSON.parse(localStorage.getItem('format')) || 'legacy')
-  const [access_token, setToken] = useState('')
+  const [access_token, setToken] = useState(JSON.parse(localStorage.getItem('access_token')) || '')
 
   useEffect(() => {
-    setToken(window.location.href.split('=')[1]?.split('&')[0])
+    let token = access_token || window.location.href.split('=')[1]?.split('&')[0]
+    setToken(token)
+    localStorage.setItem('access_token', JSON.stringify(token ? token : ''))
+
   }, [access_token])
 
   useEffect(() => {
@@ -37,6 +40,7 @@ function App() {
       (async () => {
         const { data, pagination } = await API.getStreams(access_token)
         setCurrentPage(pagination?.cursor)
+        localStorage.setItem('cursor', JSON.stringify(currentPage))
         cherryPickStreams(data)
       })()
     }
@@ -44,34 +48,53 @@ function App() {
 
 
   useEffect(() => {
-    window.onscroll = function () {
+    // call the API again, ask for the next page
+    // pick out streams based on filter. default legacy
+    const cherryPickStreams = streams => {
+      let filtered = streams?.filter(stream => stream.title.toLowerCase().includes(filter))
+      // console.log(...filtered)
+      let newStreams = [...new Set(filtered)]
+      // console.log(newStreams)
+      setLegacyStreams(prevState => {
+        return prevState ? [...prevState, ...newStreams] : [...newStreams]
+      })
+    }
+    const nextPage = async () => {
+      if (currentPage) {
+        const { data, pagination } = await API.getNextPage(access_token, currentPage)
+        setCurrentPage(pagination.cursor ? pagination.cursor : '')
+        localStorage.setItem('cursor', JSON.stringify(currentPage))
+        cherryPickStreams(data)
+      }
+    }
+    const debounce = (func, wait, immediate) => {
+      var timeout;
+      return function () {
+        var context = this, args = arguments;
+        var later = function () {
+          timeout = null;
+          if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+      };
+    }
+
+    const fetchOnScroll = debounce(function () {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         nextPage()
       }
-    }
-  })
+    }, 250)
+
+    window.onscroll = fetchOnScroll
+  }, [currentPage, access_token, filter])
 
 
-  // pick out streams based on filter. default legacy
-  const cherryPickStreams = streams => {
-    let filtered = streams?.filter(stream => stream.title.toLowerCase().includes(filter))
-    // console.log(...filtered)
-    let newStreams = [...new Set(filtered)]
-    // console.log(newStreams)
-    setLegacyStreams(prevState => {
-      return prevState ? [...prevState, ...newStreams] : [...newStreams]
-    })
-  }
 
 
-  // call the API again, ask for the next page
-  const nextPage = async () => {
-    if (currentPage) {
-      const { data, pagination } = await API.getNextPage(access_token, currentPage)
-      setCurrentPage(pagination.cursor ? pagination.cursor : '')
-      cherryPickStreams(data)
-    }
-  }
+
 
   const hideMessage = () => {
     setClosed(!closed)
@@ -80,7 +103,7 @@ function App() {
 
 
   return (
-    <div className='main-container' href='#'>
+    <div className='main-container' id='#top'>
       <div className="row">
         <button
           id='filter-btn'
@@ -112,13 +135,10 @@ function App() {
       </div>
       <button
         id='to-top'
-        // onClick={() => window.location = '#'}
-        >
-          <a href="#">
-            ^
-          </a>
-        
-          </button>
+      onClick={() => window.location = '#'}
+      >
+          ^
+      </button>
 
       <footer id='footer'>
         <span>&copy; <a href="https://cobysher.dev">Coby Sher</a> 2021</span>
