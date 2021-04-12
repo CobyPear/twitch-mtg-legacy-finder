@@ -61,7 +61,6 @@ function App() {
     setLegacyStreams(prevState => {
       return prevState ? [...prevState, ...newStreams] : [...newStreams]
     })
-    console.log(legacyStreams)
   }
 
 
