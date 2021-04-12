@@ -147,7 +147,15 @@ button {
   max-width: max-content;
 }
 
-
+#to-top {
+  position: fixed;
+  top: 90%;
+  padding: 25px;
+  right: 12%;
+  margin: 0;
+  font-size: 1.3em;
+  
+}
 /* TODO: try to get tooltip on image working :] */
 
 

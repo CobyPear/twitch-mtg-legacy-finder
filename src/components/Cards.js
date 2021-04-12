@@ -1,8 +1,7 @@
 import React from 'react'
 import StreamerCard from './StreamerCard'
 
-const Cards = ({legacyStreams}) => {
-    const token = window.location.href.split('=')[1]?.split('&')[0] || ''
+const Cards = ({legacyStreams, token}) => {
     return (
         <div id='resp'>
             {   legacyStreams?.length ?(
