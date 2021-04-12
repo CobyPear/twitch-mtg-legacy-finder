@@ -10,7 +10,7 @@ body {
 }
 
 html {
-  min-width: 100vw;
+  min-width: 95vw;
   height: 100vh;
   flex-shrink: 1;
 }
@@ -154,7 +154,7 @@ button {
   right: 12%;
   margin: 0;
   font-size: 1.3em;
-  
+
 }
 /* TODO: try to get tooltip on image working :] */
 
@@ -206,6 +206,13 @@ footer {
 
   .message {
     flex-direction: row;
+  }
+  .card {
+    min-width: none;
+  }
+  #to-top {
+    left: 0;
+    width: 90px;
   }
 
 }

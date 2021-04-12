@@ -67,6 +67,7 @@ function App() {
         cherryPickStreams(data)
       }
     }
+    // debounce function via https://davidwalsh.name/javascript-debounce-function
     const debounce = (func, wait, immediate) => {
       var timeout;
       return function () {
