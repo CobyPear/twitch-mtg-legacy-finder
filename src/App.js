@@ -16,7 +16,7 @@ function App() {
   const [legacyStreams, setLegacyStreams] = useState([])
   const [currentPage, setCurrentPage] = useState()
   const [closed, setClosed] = useState(JSON.parse(localStorage.getItem('closed')) || false);
-  const [filter, setFilter] = useState('legacy')
+  const [filter, setFilter] = useState(JSON.parse(localStorage.getItem('format')) || 'legacy')
 
   useEffect(() => {
     if (token) {
@@ -26,12 +26,13 @@ function App() {
         let newStreams = [...new Set(filtered)]
         // console.log(newStreams)
         setLegacyStreams(prevState => {
-          return prevState ? [...prevState, ...newStreams] : [...newStreams]
+          console.log(prevState)
+          return [...newStreams]
         })
       }
       (async () => {
         const { data, pagination } = await API.getStreams(token)
-        setCurrentPage(pagination.cursor)
+        setCurrentPage(pagination?.cursor)
         cherryPickStreams(data)
       })()
     }
@@ -56,6 +57,7 @@ function App() {
     setLegacyStreams(prevState => {
       return prevState ? [...prevState, ...newStreams] : [...newStreams]
     })
+    console.log(legacyStreams)
   }
 
 
@@ -76,32 +78,35 @@ function App() {
 
   return (
     <div className='main-container'>
-      <button
-      onClick={() => {
-        const cards = document.getElementById('cards')
-        cards.innerHTML =''
-        setFilter(filter === 'legacy' ? 'modern' : 'legacy')
-      }}>
-        switch to {`${filter === 'legacy' ? 'modern' : 'legacy'}`}
-      </button>
-      {
-        !closed ? (
-        <div className="message" style={{ display: closed ? 'none' : 'flex' }}>
-          <h1>Welcome to Twitch M:tG Legacy Finder</h1>
-          <button onClick={hideMessage}>x</button>
-          <p>How does it work?</p>
-          <p>1. Click Login to login to your Twitch account <a href="https://github.com/CobyPear/twitch-mtg-legacy-finder#question-why-do-i-need-to-login-to-twitch" id='why'>Why do I need to do this?</a></p>
-          <p>2. Browse live Magic: the Gathering streamers currently playing the best (Legacy) format</p>
-          <p>3. ???</p>
-          <p>4. Profit!</p>
-          <a className='link-button' href={URL}>Login</a>
+      <div className="row">
+        <button
+          id='filter-btn'
+          onClick={() => {
+            setFilter(filter === 'legacy' ? 'modern' : 'legacy')
+            localStorage.setItem('format', JSON.stringify(filter === 'legacy' ? 'modern' : 'legacy'))
+          }}>
+          switch to {`${filter === 'legacy' ? 'modern' : 'legacy'}`}
+        </button>
+        <a className='link-button' id='login' href={URL}>Login</a>
+        {closed && <button id='show-message' onClick={hideMessage}>show message</button>}
         </div>
-        ) : (
-          <button id='show-message' onClick={hideMessage}>show message</button>
-        )
-
-      }
-      { legacyStreams && <Cards legacyStreams={legacyStreams} />}
+        {
+          !closed && (
+            <div className="row">
+              <div className="message" style={{ display: closed ? 'none' : 'inline-block' }}>
+                <h1>Welcome to Twitch M:tG Legacy Finder</h1>
+                <button onClick={hideMessage}>x</button>
+                <p>How does it work?</p>
+                <p>1. Click Login to login to your Twitch account <a href="https://github.com/CobyPear/twitch-mtg-legacy-finder#question-why-do-i-need-to-login-to-twitch" id='why'>Why do I need to do this?</a></p>
+                <p>2. Browse live Magic: the Gathering streamers currently playing the best (Legacy) format</p>
+                <a className='link-button' href={URL}>Login</a>
+              </div>
+            </div>
+          )
+        }
+      <div id='cards'>
+        {legacyStreams && <Cards legacyStreams={legacyStreams} />}
+      </div>
 
       <footer id='footer'>
         <span>&copy; <a href="https://cobysher.dev">Coby Sher</a> 2021</span>

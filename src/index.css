@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
-
 body {
   margin: 0;
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, ;
@@ -7,17 +6,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: black;
   color: white;
-
   font-family: 'Source Sans Pro', sans-serif;
 }
 
 html {
-  width: 95vw;
+  min-width: 100vw;
   height: 100vh;
+  flex-shrink: 1;
 }
 
 h2 {
   word-wrap: break-word;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem 1rem 1rem 0;
 }
 
 .message {
@@ -26,18 +31,26 @@ h2 {
   margin: 0 auto 3rem;
   text-align: center;
   justify-items: center;
+
 }
 
-button{
+#login {
+  padding: 6px 50px;
+  margin: 0 10px;
+  height: 24px;
+}
+
+button {
   width: 120px;
   height: 35px;
   padding: 5px;
   margin-left: 3rem;
   background-color: #9147ff;
   color: white;
+  flex-shrink: 2;
 }
 
-.message > a {
+.message>a {
   margin: 0 auto;
   width: 40px
 }
@@ -47,12 +60,15 @@ button{
 }
 
 #show-message {
-  margin: 3rem auto;
+  margin-left: auto;
   background-color: #9147ff;
   color: white;
   padding: 8px;
 }
+
+
 /* style links to look like buttons */
+
 .link-button {
   text-decoration: none;
   background-color: #9147ff;
@@ -61,13 +77,16 @@ button{
   font-style: italic;
   border-radius: 25px;
 }
+
 .link-button:hover {
   background-color: #aa7af1;
   box-shadow: 0 5px 15px #9147ff;
   border-radius: 0;
 }
 
+
 /* container where cards live */
+
 .main-container {
   display: flex;
   flex-direction: column;
@@ -77,15 +96,18 @@ button{
 
 /* cards */
 
+#resp {
+  flex: 1 1 20em;
+}
+
 .card {
-  width: 500px;
+  flex-shrink: 1;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   margin: 0 auto 2rem auto;
   padding: 1rem;
-
   background-color: black;
-
   border: solid 1px white;
   border-radius: 25px;
 }
@@ -95,7 +117,9 @@ button{
   flex-direction: column;
 }
 
+
 /* spacer element */
+
 .spacer {
   flex-grow: 1;
   height: 20px;
@@ -103,20 +127,33 @@ button{
 
 .img-link-container {
   display: flex;
+  flex-shrink: 1;
   flex-direction: column;
-  /* justify-content: space-between; */
+
   margin-bottom: 10px;
 }
 
-.img-link-container > a {
+.img-link-container>a>img {
+  width: 100%;
+  flex-shrink: 1;
+}
+
+.img-link-container>a {
+  max-width: 20px;
+  flex: 1 1 auto;
   display: flex;
   margin: 5px auto;
   font-size: 1.7em;
+  max-width: max-content;
 }
+
 
 /* TODO: try to get tooltip on image working :] */
 
+
 /* img tooltip */
+
+
 /* .tooltip {
   position: relative;
   border-bottom: 1px dashed #000;
@@ -139,6 +176,7 @@ button{
 .tooltip:hover:before img:hover:before {
   display:block;
 } */
+
 footer {
   display: flex;
   flex-direction: row;
@@ -148,6 +186,18 @@ footer {
   margin-top: 1rem;
 }
 
-#footer > span {
+#footer>span {}
+
+@media only screen and (max-width: 600px) {
+  button {
+    font-size: .6em;
+  }
+  #filter-btn {
+    margin: 0;
+  }
+
+  .message {
+    flex-direction: row;
+  }
 
 }

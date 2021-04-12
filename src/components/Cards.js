@@ -2,8 +2,9 @@ import React from 'react'
 import StreamerCard from './StreamerCard'
 
 const Cards = ({legacyStreams}) => {
+    const token = window.location.href.split('=')[1]?.split('&')[0] || ''
     return (
-        <div id='cards'>
+        <div id='resp'>
             {   legacyStreams?.length ?(
                 legacyStreams?.map(stream => {
                     return <StreamerCard
@@ -15,7 +16,7 @@ const Cards = ({legacyStreams}) => {
 
                 })
                 ) : (
-                    <p style={{textAlign: 'center'}}>Login to view active streams</p>
+                    <p style={{textAlign: 'center'}}>{token ? `No live streamers at the moment. Try again later, or switch to a different format` : `Please login to view live streamers`}</p>
                 )
             }
         </div>
