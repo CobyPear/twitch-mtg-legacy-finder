@@ -110,6 +110,18 @@ button {
   background-color: black;
   border: solid 1px white;
   border-radius: 25px;
+  text-align: center;
+}
+
+.card-header > h1 {
+  text-shadow: 3px 5px 8px #9147ff,
+  -3px -5px 8px #9147ff;
+}
+
+
+.card-header > h1:hover{
+  text-shadow: 3px 7px 15px #ad77ff,
+  -3px -7px 15px #ad77ff;
 }
 
 .card-body {

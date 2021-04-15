@@ -61,6 +61,7 @@ function App() {
     }
     const nextPage = async () => {
       if (currentPage) {
+        // console.log('nextPage!')
         const { data, pagination } = await API.getNextPage(access_token, currentPage)
         setCurrentPage(pagination.cursor ? pagination.cursor : '')
         localStorage.setItem('cursor', JSON.stringify(currentPage))
@@ -84,8 +85,9 @@ function App() {
     }
 
     const fetchOnScroll = debounce(function () {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        nextPage()
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+        // console.log('scroll')
+          nextPage()
       }
     }, 250)
 
