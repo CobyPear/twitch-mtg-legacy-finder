@@ -80,10 +80,17 @@ button {
 
 .link-button:hover {
   background-color: #aa7af1;
+  transform: skew(-13deg);
   box-shadow: 0 5px 15px #9147ff;
   border-radius: 0;
 }
 
+.link-button:focus {
+  background-color: #aa7af1;
+  transform: skew(-13deg);
+  box-shadow: 0 5px 15px #9147ff;
+  border-radius: 0;
+}
 
 /* container where cards live */
 

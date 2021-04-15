@@ -1,6 +1,7 @@
 {
-    "short_name": "Legacy Finder",
-    "name": "Twitch Legacy Finder",
+    "short_name": "Eternal Finder",
+    "name": "Magic: the Gathering Eternal Finder",
+    "description": "Easily find live Legacy and Modern streamers",
     "icons": [
         {
             "src": "android-chrome-192x192.png",
@@ -13,7 +14,8 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone"
+    "theme_color": "#9147ff",
+    "background_color": "#000000",
+    "display": "standalone",
+    "start_url": "."
 }
