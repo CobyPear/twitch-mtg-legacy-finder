@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/twitch-mtg-legacy-finder/static/css/main.9ec55432.chunk.css",
-    "main.js": "/twitch-mtg-legacy-finder/static/js/main.adb73f6e.chunk.js",
-    "main.js.map": "/twitch-mtg-legacy-finder/static/js/main.adb73f6e.chunk.js.map",
+    "main.js": "/twitch-mtg-legacy-finder/static/js/main.64ba01cf.chunk.js",
+    "main.js.map": "/twitch-mtg-legacy-finder/static/js/main.64ba01cf.chunk.js.map",
     "runtime-main.js": "/twitch-mtg-legacy-finder/static/js/runtime-main.bd893773.js",
     "runtime-main.js.map": "/twitch-mtg-legacy-finder/static/js/runtime-main.bd893773.js.map",
     "static/js/2.cbd18c20.chunk.js": "/twitch-mtg-legacy-finder/static/js/2.cbd18c20.chunk.js",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.bd893773.js",
     "static/js/2.cbd18c20.chunk.js",
     "static/css/main.9ec55432.chunk.css",
-    "static/js/main.adb73f6e.chunk.js"
+    "static/js/main.64ba01cf.chunk.js"
   ]
 }
