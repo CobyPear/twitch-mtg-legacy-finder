@@ -8,6 +8,7 @@ body {
   color: white;
   font-family: 'Source Sans Pro', sans-serif;
 }
+/* general */
 
 html {
   min-width: 95vw;
@@ -19,6 +20,16 @@ h2 {
   word-wrap: break-word;
 }
 
+button {
+  width: 120px;
+  height: 35px;
+  padding: 5px;
+  background-color: #9147ff;
+  color: white;
+  flex-shrink: 2;
+}
+
+/* utility classes */
 .row {
   display: flex;
   flex-direction: row;
@@ -29,6 +40,7 @@ h2 {
   justify-content: space-between;
 }
 
+/* message */
 .message {
   display: flex;
   flex-direction: column;
@@ -45,14 +57,6 @@ h2 {
   height: 24px;
 }
 
-button {
-  width: 120px;
-  height: 35px;
-  padding: 5px;
-  background-color: #9147ff;
-  color: white;
-  flex-shrink: 2;
-}
 
 .message>a {
   margin: 0 auto;
@@ -76,7 +80,6 @@ button {
   color: white;
   padding: 8px;
 }
-
 
 /* style links to look like buttons */
 
@@ -110,7 +113,6 @@ button {
   flex-direction: column;
   justify-content: center;
 }
-
 
 /* cards */
 
@@ -147,9 +149,7 @@ button {
   flex-direction: column;
 }
 
-
 /* spacer element */
-
 .spacer {
   flex-grow: 1;
   height: 20px;
@@ -192,34 +192,6 @@ button {
 #load-more {
   margin-left: 2rem;
 }
-/* TODO: try to get tooltip on image working :] */
-
-
-/* img tooltip */
-
-
-/* .tooltip {
-  position: relative;
-  border-bottom: 1px dashed #000;
-
-  top: 50%;
-  transform: translateY(-50%);
-
-  left: 100%;
-  margin-left: 15px;
-
-  width:200px;
-  padding:10px;
-  border-radius:10px;
-  background:#fff;
-
-  display: none;
-
-}
-
-.tooltip:hover:before img:hover:before {
-  display:block;
-} */
 
 footer {
   display: flex;
@@ -251,5 +223,4 @@ footer {
   #load-more {
     margin-left: auto;
   }
-
 }
