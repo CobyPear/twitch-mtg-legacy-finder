@@ -18,7 +18,7 @@ export const API = {
     },
     getNextPage: async function(token, currentPage) {
         try {
-            const req = await fetch(`https://api.twitch.tv/helix/streams?game_id=2748&after=${currentPage}`, {
+            const req = await fetch(`https://api.twitch.tv/helix/streams?game_id=2748&first=100&after=${currentPage}`, {
                 method: 'GET',
                 headers: {
                     "Authorization": `Bearer ${token}`,

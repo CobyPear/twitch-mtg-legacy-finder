@@ -25,6 +25,10 @@ h2 {
   margin: 2rem 1rem 1rem 0;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
 .message {
   display: flex;
   flex-direction: column;
@@ -36,7 +40,8 @@ h2 {
 
 #login {
   padding: 6px 50px;
-  margin: 0 10px;
+  /* margin: 0 10px; */
+  /* margin: 0 auto; */
   height: 24px;
 }
 
@@ -44,7 +49,6 @@ button {
   width: 120px;
   height: 35px;
   padding: 5px;
-  margin-left: 3rem;
   background-color: #9147ff;
   color: white;
   flex-shrink: 2;
@@ -54,13 +58,20 @@ button {
   margin: 0 auto;
   width: 40px
 }
+.italics {
+  font-style: italic;
+}
+.message>div>button {
+  width: 50px;
+  margin-left: auto;
+}
 
 #why {
   background-color: white;
 }
 
 #show-message {
-  margin-left: auto;
+  /* margin-left: auto; */
   background-color: #9147ff;
   color: white;
   padding: 8px;
@@ -166,6 +177,8 @@ button {
   max-width: max-content;
 }
 
+/* to top button */
+
 #to-top {
   position: fixed;
   top: 90%;
@@ -173,7 +186,11 @@ button {
   right: 12%;
   margin: 0;
   font-size: 1.3em;
+}
+/* load more btn */
 
+#load-more {
+  margin-left: 2rem;
 }
 /* TODO: try to get tooltip on image working :] */
 
@@ -232,6 +249,9 @@ footer {
   #to-top {
     left: 0;
     width: 90px;
+  }
+  #load-more {
+    margin-left: auto;
   }
 
 }
