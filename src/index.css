@@ -230,8 +230,6 @@ footer {
   margin-top: 1rem;
 }
 
-#footer>span {}
-
 @media only screen and (max-width: 600px) {
   button {
     font-size: .6em;
