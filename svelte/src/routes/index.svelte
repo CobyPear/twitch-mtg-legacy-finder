@@ -1,25 +1,40 @@
-<script context='module'>
+<script context="module">
   import { API } from '$lib/utils/API';
-  import { getSession } from '../hooks/index'
-  let token;
+  export const api = new API(
+    import.meta.env.VITE_CLIENT_ID,
+    import.meta.env.VITE_CLIENT_SECRET,
+  );
 
   export const load = async ({ session }) => {
-    console.log(session)
-    const { access_token } = session
-    const streams = access_token && await API.getStreams(access_token)
-    // const resp = await req.json()
-
-    return {
-      props: streams
+    try {
+      let res;
+      if (session) {
+        console.log('inside if token!')
+        res = await api.getStreams(session);
+      }
+      const { data, pagination } = res
+      return {
+        props: {
+          streams: data,
+          pagination
+        },
+      };
+    } catch (error) {
+      throw new Error(error)
     }
   };
 </script>
 
 <script>
   export let streams;
-  console.log(streams)
 </script>
-<h1>Welcome to SvelteKit</h1>
-<p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
+
+{#each streams as stream}
+  <h2>{stream.title}</h2>
+  <h3>{stream.user_name}</h3>
+  <img
+    src={stream.thumbnail_url
+      .replace('{width}', '300')
+      .replace('{height}', '150')}
+    alt={`${stream.user_name}'s stream preview`} />
+{/each}

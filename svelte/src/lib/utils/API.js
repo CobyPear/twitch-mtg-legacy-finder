@@ -1,15 +1,15 @@
-export const API = {
-  base_url: 'https://api.twitch.tv',
-  CLIENT_ID: import.meta.env.DEV ? import.meta.env.VITE_CLIENT_ID : process.env.CLIENT_ID,
-  CLIENT_SECRET: import.meta.env.DEV ? import.meta.env.VITE_CLIENT_SECRET : process.env.CLIENT_SECRET,
-  setToken(token) {
-    this.token = token
-  },
-  getToken: async function () {
+export class API {
+  base_url = 'https://api.twitch.tv'
+
+  constructor(CLIENT_ID, CLIENT_SECRET) {
+    this.CLIENT_ID = CLIENT_ID
+    this.CLIENT_SECRET = CLIENT_SECRET
+  }
+  async getToken() {
     try {
       const req = await fetch(`https://id.twitch.tv/oauth2/token?client_id=${this.CLIENT_ID}&client_secret=${this.CLIENT_SECRET}&grant_type=client_credentials`,
       {
-        method: 'POST'
+        method: 'POST',
       })
       const resp = await req.json()
 
@@ -18,11 +18,11 @@ export const API = {
     } catch (error) {
       throw new Error(error)
     }
-  },
-  getStreams: async function (token) {
-    console.log(token)
+  }
+  async getStreams(token) {
     try {
       // mtg game id: 2748
+      console.log('api token: ', token)
       const req = await fetch(`${this.base_url}/helix/streams?game_id=2748&first=100`, {
         method: 'GET',
         headers: {
@@ -31,14 +31,13 @@ export const API = {
         }
       })
       const resp = await req.json()
-      console.log(resp)
       return resp
 
     } catch (error) {
       console.log(error)
     }
-  },
-  getNextPage: async function (token, currentPage) {
+  }
+  async getNextPage(token, currentPage) {
     try {
       const req = await fetch(`https://api.twitch.tv/helix/streams?game_id=2748&first=100&after=${currentPage}`, {
         method: 'GET',
