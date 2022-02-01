@@ -8,9 +8,9 @@ export class API {
   async getToken() {
     try {
       const req = await fetch(`https://id.twitch.tv/oauth2/token?client_id=${this.CLIENT_ID}&client_secret=${this.CLIENT_SECRET}&grant_type=client_credentials`,
-      {
-        method: 'POST',
-      })
+        {
+          method: 'POST',
+        })
       const resp = await req.json()
 
       return resp
@@ -37,13 +37,31 @@ export class API {
       console.log(error)
     }
   }
-  async getNextPage(token, currentPage) {
+  async getNextPage(token, { cursor }) {
+    console.log(token)
     try {
-      const req = await fetch(`https://api.twitch.tv/helix/streams?game_id=2748&first=100&after=${currentPage}`, {
+      const req = await fetch(`https://api.twitch.tv/helix/streams?game_id=2748&first=100&after=${cursor}`, {
         method: 'GET',
         headers: {
           "Authorization": `Bearer ${token}`,
-          "client-id": process.env.REACT_APP_CLIENT_ID,
+          "client-id": this.CLIENT_ID
+        }
+      })
+      const resp = await req.json()
+      return resp
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  async getNextPage(token, { cursor }) {
+    console.log(token)
+    try {
+      const req = await fetch(`https://api.twitch.tv/helix/streams?game_id=2748&first=100&before=${cursor}`, {
+        method: 'GET',
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "client-id": this.CLIENT_ID
         }
       })
       const resp = await req.json()
