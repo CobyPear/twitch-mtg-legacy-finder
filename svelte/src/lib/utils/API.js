@@ -73,3 +73,8 @@ export class API {
     }
   }
 }
+
+export const client = new API(
+  import.meta.env.VITE_CLIENT_ID,
+  import.meta.env.VITE_CLIENT_SECRET,
+);

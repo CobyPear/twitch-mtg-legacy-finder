@@ -1,13 +1,10 @@
-import { API } from '$lib/utils/API';
-export const api = new API(
-  import.meta.env.VITE_CLIENT_ID,
-  import.meta.env.VITE_CLIENT_SECRET,
-);
+import { client } from '$lib/utils/API';
+
 
 
 export const get = async ({ locals: { token } }) => {
   if (token) {
-    const { data, pagination } = await api.getStreams(token)
+    const { data, pagination } = await client.getStreams(token)
     
     return {
       body: {
