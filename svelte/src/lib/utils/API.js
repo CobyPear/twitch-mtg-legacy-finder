@@ -22,7 +22,6 @@ export class API {
   async getStreams(token) {
     try {
       // mtg game id: 2748
-      console.log('api token: ', token)
       const req = await fetch(`${this.base_url}/helix/streams?game_id=2748&first=100`, {
         method: 'GET',
         headers: {
@@ -34,12 +33,13 @@ export class API {
       return resp
 
     } catch (error) {
-      console.log(error)
+      throw new Error(error)
     }
   }
   async getNextPage(token, { cursor }) {
     console.log(token)
     try {
+      if (!cursor) return
       const req = await fetch(`https://api.twitch.tv/helix/streams?game_id=2748&first=100&after=${cursor}`, {
         method: 'GET',
         headers: {
@@ -54,9 +54,10 @@ export class API {
       console.log(error)
     }
   }
-  async getNextPage(token, { cursor }) {
+  async getPrevPage(token, { cursor }) {
     console.log(token)
     try {
+      if (!cursor) return
       const req = await fetch(`https://api.twitch.tv/helix/streams?game_id=2748&first=100&before=${cursor}`, {
         method: 'GET',
         headers: {

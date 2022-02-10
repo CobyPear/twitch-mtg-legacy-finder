@@ -1,4 +1,4 @@
-import { api } from '../routes/index.svelte'
+import { api } from '../routes/index.js'
 import * as cookie from 'cookie'
 
 export const getSession = async (event) => {
@@ -11,9 +11,9 @@ export const handle = async ({ event, resolve }) => {
   // the token from the api then store it
   // in http only cookie
   const cookies = cookie.parse(event.request.headers.get('cookie') || '')
-  if (!!cookies.token) {
+  if (cookies.token) {
     event.locals.token = cookies.token
-    console.log('event.locals if cookies',event.locals)
+    console.log('event.locals if cookies', event.locals)
     const response = await resolve(event)
     return response
   }
@@ -25,7 +25,8 @@ export const handle = async ({ event, resolve }) => {
 
   if (!session.access_token || !cookies.token) {
     token = await api.getToken()
-    event.locals.token = { token: token.access_token }
+    event.locals.token = token.access_token
+    console.log('event.locals line 29: ', event.locals.token)
   }
 
   // need to set the HTTP Only token here somehow
@@ -40,7 +41,7 @@ export const handle = async ({ event, resolve }) => {
   })
 
   response.headers.set('Set-Cookie', cookieValue)
-  console.log("after loop cookies: ", response.headers.get('Set-Cookie'))
+  console.log("after set cookies: ", response.headers.get('Set-Cookie'))
 
   return response
 
