@@ -5,6 +5,9 @@ const config = {
   kit: {
     adapter: adapter(),
   },
+  env: {
+    dir: process.cwd()
+  }
 };
 
 export default config;

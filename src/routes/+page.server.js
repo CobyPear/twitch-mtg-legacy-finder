@@ -1,22 +1,23 @@
-import { client } from '$lib/utils/API';
+import { client } from '$lib/utils/client';
+import * as cookie from 'cookie';
 
-
-
-export const get = async ({ locals: { token } }) => {
-  if (token) {
-    const { data, pagination } = await client.getStreams(token)
-    
+/** @type {import('./$types').load} */
+export const load = async ({ locals }) => {
+  if (locals.token) {
+    const {
+      data,
+      pagination: { cursor: cursor },
+    } = await client.getStreams(locals.token);
     return {
-      body: {
-        streams: data,
-        cursor: pagination,
-      }
-    }
+      streams: data,
+      cursor,
+    };
   }
   return {
     body: {
-      error: 'Unauthorized'
+      error: 'Unauthorized',
     },
-    status: 401
-  }
-}
+    status: 401,
+  };
+};
+

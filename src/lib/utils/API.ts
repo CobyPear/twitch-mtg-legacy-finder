@@ -3,7 +3,7 @@ export class API {
   private CLIENT_ID: string;
   private CLIENT_SECRET: string;
 
-  constructor(CLIENT_ID, CLIENT_SECRET) {
+  constructor(CLIENT_ID: string, CLIENT_SECRET: string) {
     this.CLIENT_ID = CLIENT_ID;
     this.CLIENT_SECRET = CLIENT_SECRET;
     this.base_url = 'https://api.twitch.tv';
@@ -23,11 +23,11 @@ export class API {
       console.error(error);
     }
   }
-  async getStreams(token) {
+  async getStreams(token: string) {
     try {
       // mtg game id: 2748
       const req = await fetch(
-        `${this.base_url}/helix/streams?game_id=2748&first=100`,
+        `${this.base_url}/helix/streams?game_id=2748&first=25`,
         {
           method: 'GET',
           headers: {
@@ -42,12 +42,11 @@ export class API {
       console.error(error);
     }
   }
-  async getNextPage(token, { cursor }) {
-    console.log(token);
+  async getNextPage(token: string, cursor: string) {
     try {
       if (!cursor) return;
       const req = await fetch(
-        `https://api.twitch.tv/helix/streams?game_id=2748&first=100&after=${cursor}`,
+        `https://api.twitch.tv/helix/streams?game_id=2748&first=25&after=${cursor}`,
         {
           method: 'GET',
           headers: {
@@ -59,15 +58,14 @@ export class API {
       const resp = await req.json();
       return resp;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
-  async getPrevPage(token, { cursor }) {
-    console.log(token);
+  async getPrevPage(token: string, cursor: string) {
     try {
       if (!cursor) return;
       const req = await fetch(
-        `https://api.twitch.tv/helix/streams?game_id=2748&first=100&before=${cursor}`,
+        `https://api.twitch.tv/helix/streams?game_id=2748&first=25&before=${cursor}`,
         {
           method: 'GET',
           headers: {
@@ -79,13 +77,8 @@ export class API {
       const resp = await req.json();
       return resp;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }
-
-export const client = new API(
-  import.meta.env.VITE_CLIENT_ID,
-  import.meta.env.VITE_CLIENT_SECRET,
-);
 
